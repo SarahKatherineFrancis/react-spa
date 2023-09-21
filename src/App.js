@@ -1,10 +1,21 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Products from "./pages/Products";
+import Root from "./pages/Root";
 
 // Create a router configuration using createBrowserRouter.
-// This configuration specifies that the Home component should be rendered when the path is "/".
-const router = createBrowserRouter([{ path: "/", element: <Home /> }]);
+// This configuration specifies which components to render for specific paths.
+const router = createBrowserRouter([
+  {
+    path: "/", // Define the root path.
+    element: <Root />, // Render the Root component for the root path.
+    children: [
+      { path: "/", element: <Home /> }, // Render the Home component for the root path.
+      { path: "/products", element: <Products /> }, // Render the Products component for the "/products" path.
+    ],
+  },
+]);
 
 // Define the main App component.
 function App() {
